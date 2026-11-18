@@ -1,6 +1,8 @@
 (() => {
     'use strict';
 
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // =============================================
     // CUSTOM CURSOR — Desktop mouse only
     // =============================================
@@ -10,6 +12,7 @@
     function initCursor() {
         if (!cursor || !follower) return;
         if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+        if (reducedMotion) return;
 
         let mouseX = 0;
         let mouseY = 0;
@@ -79,6 +82,10 @@
         if (heroAnimated) return;
         heroAnimated = true;
         const heroEls = document.querySelectorAll('.anim-hero');
+        if (reducedMotion) {
+            heroEls.forEach((el) => el.classList.add('in'));
+            return;
+        }
         heroEls.forEach((el) => {
             const delay = parseInt(el.dataset.delay || '0', 10) * 120;
             setTimeout(() => el.classList.add('in'), 200 + delay);
@@ -100,7 +107,7 @@
         const counters = document.querySelectorAll('[data-count]');
         if (!counters.length) return;
 
-        if (!('IntersectionObserver' in window)) {
+        if (reducedMotion || !('IntersectionObserver' in window)) {
             counters.forEach((c) => {
                 c.textContent = c.dataset.count;
             });
@@ -230,7 +237,13 @@
         const currentId = getActiveSectionId();
         navDataLinks.forEach((link) => {
             const href = link.getAttribute('href');
-            link.classList.toggle('active', href === '#' + currentId);
+            const isActive = href === '#' + currentId;
+            link.classList.toggle('active', isActive);
+            if (isActive) {
+                link.setAttribute('aria-current', 'location');
+            } else {
+                link.removeAttribute('aria-current');
+            }
         });
 
         syncActiveLiquidPill();
@@ -277,31 +290,67 @@
     const mobNav = document.getElementById('mobNav');
     const mobLinks = mobNav ? mobNav.querySelectorAll('a') : [];
 
+    mobLinks.forEach((link) => link.setAttribute('tabindex', '-1'));
+
     function toggleMob() {
         if (!hamburger || !mobNav) return;
         const isOpen = hamburger.classList.toggle('open');
         mobNav.classList.toggle('open', isOpen);
         hamburger.setAttribute('aria-expanded', String(isOpen));
         mobNav.setAttribute('aria-hidden', String(!isOpen));
+        mobNav.inert = !isOpen;
+        mobLinks.forEach((link) => {
+            if (isOpen) link.removeAttribute('tabindex');
+            else link.setAttribute('tabindex', '-1');
+        });
         document.body.style.overflow = isOpen ? 'hidden' : '';
+        if (isOpen && mobLinks.length) mobLinks[0].focus();
     }
 
-    function closeMob() {
+    function closeMob(restoreFocus = false) {
         if (!hamburger || !mobNav) return;
         hamburger.classList.remove('open');
         mobNav.classList.remove('open');
         hamburger.setAttribute('aria-expanded', 'false');
         mobNav.setAttribute('aria-hidden', 'true');
+        mobNav.inert = true;
+        mobLinks.forEach((link) => link.setAttribute('tabindex', '-1'));
         document.body.style.overflow = '';
+        if (restoreFocus) hamburger.focus();
     }
 
     if (hamburger) {
         hamburger.addEventListener('click', toggleMob);
     }
-    mobLinks.forEach((link) => link.addEventListener('click', closeMob));
+    mobLinks.forEach((link) => link.addEventListener('click', () => closeMob()));
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeMob();
+        if (e.key === 'Escape' && mobNav && mobNav.classList.contains('open')) {
+            closeMob(true);
+            return;
+        }
+
+        if (e.key === 'Tab' && mobNav && mobNav.classList.contains('open') && mobLinks.length) {
+            const first = mobLinks[0];
+            const last = mobLinks[mobLinks.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
     });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && mobNav && mobNav.classList.contains('open')) closeMob();
+    });
+
+    // Print-friendly resume: browsers can save the result as a PDF.
+    const printResume = document.getElementById('printResume');
+    if (printResume) {
+        printResume.addEventListener('click', () => window.print());
+    }
 
     // =============================================
     // SMOOTH SCROLL — Anchor links

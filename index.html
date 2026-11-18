@@ -10,12 +10,14 @@
   <meta name="author" content="Md Shariful Islam" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#FFFFFF" />
+  <meta name="color-scheme" content="light" />
 
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Md Shariful Islam — Software Engineer" />
   <meta property="og:description" content="5+ years of production experience building scalable web applications with PHP, Laravel, CakePHP &amp; Vue.js." />
   <meta property="og:site_name" content="Md Shariful Islam" />
+  <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Md Shariful Islam — Software Engineer" />
   <meta name="twitter:description" content="Software Engineer specializing in PHP, Laravel, CakePHP, Vue.js, and scalable web architectures." />
@@ -86,7 +88,7 @@
   </nav>
 
   <!-- Mobile Nav -->
-  <div class="mob-nav" id="mobNav" aria-label="Mobile navigation" aria-hidden="true">
+  <div class="mob-nav" id="mobNav" aria-label="Mobile navigation" aria-hidden="true" inert>
     <div class="mob-nav__inner">
       <ul class="mob-nav__links">
         <li><a href="#about">About</a></li>
@@ -114,7 +116,7 @@
           <span class="hero__greeting">Hello, I'm</span>
           <span class="hero__avail-pill">
             <span class="status-dot"></span>
-            Open to Mid-Level &amp; Freelance
+            Open to Engineering &amp; Freelance
           </span>
         </div>
 
@@ -135,6 +137,7 @@
         <div class="hero__actions anim-hero" data-delay="5">
           <a href="#projects" class="btn btn--primary" data-hover>View Selected Work →</a>
           <a href="#contact" class="btn btn--ghost" data-hover>Get in Touch</a>
+          <button type="button" class="btn btn--ghost" id="printResume" data-hover>Print / Save Résumé</button>
         </div>
 
         <div class="hero__socials anim-hero" data-delay="6">
@@ -404,6 +407,7 @@
 
       <div class="proj-grid">
         <a href="https://www.mynztrip.com" target="_blank" rel="noopener noreferrer" class="proj-card reveal" data-hover>
+          <div class="proj-card__visual proj-card__visual--travel" aria-hidden="true"><span>NZ</span><small>Travel systems</small></div>
           <div class="proj-card__top">
             <span class="proj-card__num">01</span>
             <span class="proj-card__cat">Travel Platform</span>
@@ -412,12 +416,14 @@
           <h3 class="proj-card__name">mynztrip.com</h3>
           <p class="proj-card__url">www.mynztrip.com</p>
           <p class="proj-card__desc">Travel platform providing seamless trip planning, booking services, itinerary management, and curated travel experiences.</p>
+          <p class="proj-card__impact"><strong>Contribution</strong> Booking, itinerary, and travel portal features</p>
           <div class="proj-card__tags">
             <span>PHP</span><span>Laravel</span><span>International</span>
           </div>
         </a>
 
         <a href="https://www.laat.ac.uk" target="_blank" rel="noopener noreferrer" class="proj-card reveal" data-hover>
+          <div class="proj-card__visual proj-card__visual--education" aria-hidden="true"><span>LAAT</span><small>Higher education</small></div>
           <div class="proj-card__top">
             <span class="proj-card__num">02</span>
             <span class="proj-card__cat">Higher Education</span>
@@ -426,12 +432,14 @@
           <h3 class="proj-card__name">LAAT</h3>
           <p class="proj-card__url">www.laat.ac.uk</p>
           <p class="proj-card__desc">London Academy for Applied Technology — UK Higher Education platform partnered with Plymouth Marjon University.</p>
+          <p class="proj-card__impact"><strong>Scope</strong> International education platform delivery</p>
           <div class="proj-card__tags">
             <span>PHP</span><span>Laravel</span><span>International</span>
           </div>
         </a>
 
         <a href="https://bsec-ipo.tappware.com" target="_blank" rel="noopener noreferrer" class="proj-card reveal" data-hover>
+          <div class="proj-card__visual proj-card__visual--regulatory" aria-hidden="true"><span>BSEC</span><small>Regulatory workflow</small></div>
           <div class="proj-card__top">
             <span class="proj-card__num">03</span>
             <span class="proj-card__cat">Govt. Regulatory</span>
@@ -440,12 +448,14 @@
           <h3 class="proj-card__name">BSEC IPO Application</h3>
           <p class="proj-card__url">bsec-ipo.tappware.com</p>
           <p class="proj-card__desc">Bangladesh Securities and Exchange Commission portal enabling digital IPO applications with regulatory compliance.</p>
+          <p class="proj-card__impact"><strong>Outcome</strong> Digitized IPO application workflows</p>
           <div class="proj-card__tags">
             <span>PHP</span><span>Laravel</span><span>Government</span>
           </div>
         </a>
 
         <a href="https://prac-sys.co.uk" target="_blank" rel="noopener noreferrer" class="proj-card reveal" data-hover>
+          <div class="proj-card__visual proj-card__visual--saas" aria-hidden="true"><span>PMS</span><small>Practice operations</small></div>
           <div class="proj-card__top">
             <span class="proj-card__num">04</span>
             <span class="proj-card__cat">Accounting SaaS</span>
@@ -454,12 +464,14 @@
           <h3 class="proj-card__name">PMS — Practice Management</h3>
           <p class="proj-card__url">prac-sys.co.uk</p>
           <p class="proj-card__desc">Accounting practice management system built to improve workflow productivity and client relationships for UK firms.</p>
+          <p class="proj-card__impact"><strong>Focus</strong> Workflow productivity and client operations</p>
           <div class="proj-card__tags">
             <span>PHP</span><span>Laravel</span><span>International</span>
           </div>
         </a>
 
         <a href="https://digital.nothi.gov.bd" target="_blank" rel="noopener noreferrer" class="proj-card reveal" data-hover>
+          <div class="proj-card__visual proj-card__visual--government" aria-hidden="true"><span>D-NOTHI</span><small>National e-governance</small></div>
           <div class="proj-card__top">
             <span class="proj-card__num">05</span>
             <span class="proj-card__cat">National e-Gov</span>
@@ -468,12 +480,14 @@
           <h3 class="proj-card__name">E-Nothi / D-Nothi</h3>
           <p class="proj-card__url">digital.nothi.gov.bd</p>
           <p class="proj-card__desc">Electronic filing system under a2i connecting 15,000+ government offices with AI and digital signatures.</p>
+          <p class="proj-card__impact"><strong>Scale</strong> 15,000+ government offices connected</p>
           <div class="proj-card__tags">
             <span>CakePHP</span><span>Vue.js</span><span>AI</span><span>Gov BD</span>
           </div>
         </a>
 
         <a href="https://www.georgiasoftworks.com" target="_blank" rel="noopener noreferrer" class="proj-card reveal" data-hover>
+          <div class="proj-card__visual proj-card__visual--enterprise" aria-hidden="true"><span>GSW</span><small>Enterprise systems</small></div>
           <div class="proj-card__top">
             <span class="proj-card__num">06</span>
             <span class="proj-card__cat">Enterprise</span>
@@ -482,6 +496,7 @@
           <h3 class="proj-card__name">Georgia SoftWorks</h3>
           <p class="proj-card__url">www.georgiasoftworks.com</p>
           <p class="proj-card__desc">Web platform for enterprise terminal emulation, SSH/Telnet servers, and industrial communication systems.</p>
+          <p class="proj-card__impact"><strong>Domain</strong> Industrial and secure communications</p>
           <div class="proj-card__tags">
             <span>October CMS</span><span>Security</span><span>Enterprise</span>
           </div>
@@ -561,8 +576,8 @@
           <div class="contact__avail">
             <span class="status-dot"></span>
             <div>
-              <strong>Available for Mid-Level &amp; Freelance Roles</strong>
-              <p>Open to full-time Software Engineer positions (remote or on-site in Dhaka / Cumilla).</p>
+              <strong>Available for Software Engineering &amp; Freelance Roles</strong>
+              <p>Open to full-time Software Engineer positions (remote or on-site in Dhaka / Cumilla) and selected freelance projects.</p>
             </div>
           </div>
         </div>

@@ -661,6 +661,7 @@ nav.scrolled .nav-contact-item {
   font-weight: 600;
   border-radius: var(--r);
   border: none;
+  cursor: pointer;
   letter-spacing: -0.01em;
   transition: all 0.25s var(--ease);
 }
@@ -1279,6 +1280,59 @@ nav.scrolled .nav-contact-item {
   transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s var(--ease);
 }
 
+.proj-card__visual {
+  min-height: 118px;
+  margin-bottom: 1.25rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: calc(var(--r-lg) - 3px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  background: linear-gradient(135deg, #292926, #111110);
+}
+
+.proj-card__visual::after {
+  content: '';
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  right: -40px;
+  bottom: -75px;
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 50%;
+  box-shadow: 0 0 0 24px rgba(255,255,255,0.05);
+}
+
+.proj-card__visual span {
+  position: relative;
+  z-index: 1;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.proj-card__visual small {
+  position: relative;
+  z-index: 1;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.78;
+}
+
+.proj-card__visual--travel { background: linear-gradient(135deg, #0F766E, #115E59); }
+.proj-card__visual--education { background: linear-gradient(135deg, #1D4ED8, #1E3A8A); }
+.proj-card__visual--regulatory { background: linear-gradient(135deg, #B45309, #7C2D12); }
+.proj-card__visual--saas { background: linear-gradient(135deg, #6D28D9, #3B0764); }
+.proj-card__visual--government { background: linear-gradient(135deg, #15803D, #14532D); }
+.proj-card__visual--enterprise { background: linear-gradient(135deg, #334155, #0F172A); }
+
 .proj-card:hover {
   border-color: rgba(180,83,9,0.35);
   box-shadow: 0 12px 30px rgba(20,20,19,0.07);
@@ -1348,8 +1402,25 @@ nav.scrolled .nav-contact-item {
   font-size: 0.85rem;
   color: var(--text-dim);
   line-height: 1.65;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.8rem;
   flex: 1;
+}
+
+.proj-card__impact {
+  font-size: 0.76rem;
+  color: var(--text-dim);
+  line-height: 1.55;
+  margin-bottom: 1.15rem;
+}
+
+.proj-card__impact strong {
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.64rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-right: 0.35rem;
 }
 
 .proj-card__tags {
@@ -1845,6 +1916,7 @@ footer p {
   .skip-link,
   nav,
   .mob-nav,
+  .hero__actions,
   .hero__blob,
   .section__bg-num {
     display: none !important;
